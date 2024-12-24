@@ -59,7 +59,7 @@ const App = () => {
 
   async function registerCall(agentId: string): Promise<{ access_token: string }> {
     try {
-      const response = await fetch("http://localhost:8080/create-web-call", {
+      const response = await fetch("https://assistant-backend-m5wn.onrender.com/create-web-call", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
