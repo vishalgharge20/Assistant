@@ -1,0 +1,122 @@
+/* Basic Styles */
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: rgba(0, 0, 0,0.85); /* Dark background */
+  color: white;
+}
+
+
+.App-header {
+  text-align: center;
+}
+
+/* Circle Pulse Animation */
+.pulse-animation {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background-color: rgba(0, 123, 255,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1; /* Ensure the circle is always visible */
+  transition: all 0.3s ease-in-out;
+}
+
+/* Activate animation when the 'animate' class is added */
+.pulse-animation.animate {
+  animation: pulsate 1.5s infinite;
+  box-shadow: 0 0 20px rgba(0, 123, 255, 0.85); /* Glowing effect */
+}
+
+@keyframes pulsate {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+
+/* Image inside the circle */
+.circle-image {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Listening Text Styles */
+.listening-text {
+  font-size: 18px;
+  color: #eddbdb;
+  margin-top: 20px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+/* Call Button Styles */
+.call-button {
+  margin-left: 110px;
+  font-size: 18px;
+  padding: 20px; /* Equal padding on all sides for a round button */
+  width: 80px; /* Set the width to create a circular shape */
+  height: 80px; /* Set the height to match the width */
+  border: none;
+  border-radius: 50%; /* Make the button circular */
+  cursor: pointer;
+  margin-top: 50px;
+  transition: all 0.3s ease;
+  font-weight: bold;
+  display: flex; /* Flexbox to center the text */
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally */
+}
+
+.call-button.start {
+  background-color: green;
+  color: white;
+}
+
+.call-button.stop {
+  background-color: red;
+  color: white;
+}
+
+.call-button:hover {
+  transform: scale(1.1);
+}
+
+/* Multiple Smaller Circles Inside (Inner Pulse) */
+.inner-circle {
+  position: absolute;
+  border-radius: 50%;
+  background-color: rgba(0, 123, 255, 0.4);
+  animation: pulse-circle 2s infinite ease-in-out;
+}
+
+@keyframes pulse-circle {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.8);
+    opacity: 0.6;
+  }
+}
