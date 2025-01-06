@@ -4,9 +4,7 @@ import { RetellWebClient } from "retell-client-js-sdk";
 import { Telephone, TelephoneX } from 'react-bootstrap-icons'; // Import the icons you want to use
 import '@fontsource/raleway'; // Defaults to weight 400
 
-
 const agentId = "agent_3f18514f336d276899bae4bdf0";
-
 const retellWebClient = new RetellWebClient();
 
 const App = () => {
@@ -22,8 +20,10 @@ const App = () => {
     });
 
     retellWebClient.on("agent_stop_talking", () => {
-      setIsAI(false); // AI stops speaking
-      setListening(true);
+      setTimeout(() => {
+        setIsAI(false); // AI stops speaking after a delay
+        setListening(true);
+      }, 4000); // Add a 4-second delay (adjust as needed)
     });
 
     retellWebClient.on("user_start_talking", () => {
@@ -41,8 +41,8 @@ const App = () => {
     if (isCalling) {
       retellWebClient.stopCall();
       setIsCalling(false); // End the call
-      setIsAI(false)
-      setListening(false)
+      setIsAI(false);
+      setListening(false);
     } else {
       const registerCallResponse = await registerCall(agentId);
       if (registerCallResponse.access_token) {
@@ -80,15 +80,33 @@ const App = () => {
   return (
     <div className="App">
       <header className="App-header">
+        <h1 style={{ marginBottom: '50px', fontFamily: 'Raleway, sans-serif' }}>Gritbyte Labs</h1>
+        
+        {/* Circle Animation with Audio Spectrum */}
+        <div className="pulse-container">
+          {/* Outer Circle Audio Spectrum */}
+          <div className={`audio-spectrum ${isAI ? 'active' : ''}`}></div>
 
-      <h1 style={{ marginBottom: '50px',fontFamily: 'Raleway, sans-serif'}}>Gritbyte Labs</h1>
+          {/* Pulse Animation Inside */}
+          <div className={`pulse-animation ${isAI ? 'animate' : ''}`}>
+            {/* Equalizer Animation */}
+            {isAI && (
+              <div className="equalizer">
+                <div className="equalizer-bar"></div>
+                <div className="equalizer-bar"></div>
+                <div className="equalizer-bar"></div>
+                <div className="equalizer-bar"></div>
+                <div className="equalizer-bar"></div>
+              </div>
+            )}
 
-        {/* Circle Animation */}
-        <div className={`pulse-animation ${isAI ? 'animate' : ''}`}>
-
-
-          {/* Image inside the circle */}
-          <img src="/images/latin-man-avatar-people-04feb2024__9_-ID32942-2000x2000-removebg-preview.png" alt="AI" className="circle-image" />
+            {/* Image inside the circle */}
+            <img
+              src="/images/latin-man-avatar-people-04feb2024__9_-ID32942-2000x2000-removebg-preview.png"
+              alt="AI"
+              className="circle-image"
+            />
+          </div>
         </div>
 
         {/* Show "Listening..." text when user speaks */}
